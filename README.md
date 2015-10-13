@@ -34,9 +34,9 @@ Se deben cumplir los siguientes requisitos:
 
 ####Enlaces de interés:
 
-Polymer starter kit: https://developers.google.com/web/tools/polymer-starter-kit/
-Generador: https://github.com/yeoman/generator-polymer
-Firebase component: https://elements.polymer-project.org/elements/firebase-element?active=firebase-collection
-WCT: https://github.com/Polymer/web-component-tester
-Iron Component Page: https://elements.polymer-project.org/elements/iron-component-page
-Polymer guides: https://www.polymer-project.org/1.0/docs/devguide/feature-overview.html
+  - Polymer starter kit: https://developers.google.com/web/tools/polymer-starter-kit/
+  - Generador: https://github.com/yeoman/generator-polymer
+  - Firebase component: https://elements.polymer-project.org/elements/firebase-element?active=firebase-collection
+  - WCT: https://github.com/Polymer/web-component-tester
+  - Iron Component Page: https://elements.polymer-project.org/elements/iron-component-page
+ - Polymer guides: https://www.polymer-project.org/1.0/docs/devguide/feature-overview.html
