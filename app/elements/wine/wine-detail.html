@@ -1,0 +1,123 @@
+
+<link rel="import" href="../review/review-list.html">
+<link rel="import" href="../review/review-new.html">
+
+<dom-module id="wine-detail">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+      #crud-read, #crud-update, #reviewsList {
+        padding: 10px;
+      }
+
+      #reviewsContainer {
+        margin-top: 20px;
+      }
+
+      paper-button, paper-fab {
+        background: #3F51B5;
+        color: #ffffff;
+      }
+
+      paper-button {
+        margin-top: 10px;
+      }
+
+    </style>
+
+    <paper-material elevation="1">
+      <firebase-document location="https://polymervinos.firebaseio.com/wines/{{keywine}}/" data="{{wine}}" ></firebase-document>
+
+      <div id="crud-buttons" style="position: absolute; right: 15px; height=0">
+        <paper-fab mini icon="icons:create" on-tap="editWine" style="display:inline-block;margin:15px;"></paper-fab>
+        <paper-fab mini icon="icons:delete" on-tap="deleteWine" style="display:inline-block;"></paper-fab>
+      </div>
+
+      <div id="crud-read">
+        <h3>{{wine.name}}</h3>
+        <i>{{wine.type}}</i>
+        <p>{{wine.desc}}</p> 
+      </div>
+
+      <div id="crud-update" style="display:none">
+        <h1>Edit the wine: </h1>
+        <form onsubmit="updatewine">
+          <paper-input value="{{wine.name}}" placeholder="Name wine"></paper-input>
+          <paper-input value="{{wine.type}}" placeholder="Type wine"></paper-input>
+          <paper-input value="{{wine.desc}}" placeholder="Description wine"></paper-input>
+          <paper-button raised on-click="done">DONE</paper-button>
+        </form>
+    </div>
+
+    </paper-material>
+
+    <paper-material elevation="1" id="reviewsContainer">
+      
+      <firebase-collection location="https://polymervinos.firebaseio.com/wines/{{keywine}}/reviews" data="{{reviews}}"></firebase-collection>
+      <div id="reviewsList">
+        <h1>Reviews del vino: {{wine.name}}</h1>
+        <template is="dom-repeat" items="[[reviews]]" as="review">
+          <p><i>{{review.mark}}/10</i> - {{review.text}}</p>
+        </template>
+      </div>
+      
+    </paper-material>
+
+    <div id="crud-create-review" style="display:none">
+      <review-new keywine="{{keywine}}"></review-new>
+    </div>
+
+    <paper-material elevation="0" style="margin-top:25px; text-align: center;">
+      <paper-fab mini icon="icons:add" class="paper-fab-1" on-tap="addReview" style="display: inline-block;"></paper-fab>
+    </paper-material>
+  
+  </template>
+
+  <script>
+    (function () {
+      'use strict';
+
+      Polymer({
+        is: 'wine-detail',
+        properties: {
+        },
+        ready: function() {
+        },
+        deleteWine: function() {
+          console.log(this.keywine);
+
+          var ref = new Firebase("https://polymervinos.firebaseio.com/wines/" + this.keywine);
+          ref.remove(function(error){
+
+            if (!error) {
+              window.history.back();
+            }
+            else {
+              alert("Data could not be deleted." + error);
+            }
+
+          });
+          
+        },
+        done : function() {
+          document.getElementById("crud-update").style.display = 'none';
+          document.getElementById("crud-read").style.display = 'block';  
+          document.getElementById("crud-buttons").style.display = 'block';  
+        },
+        editWine: function() {
+
+          document.getElementById("crud-update").style.display = 'block';
+          document.getElementById("crud-read").style.display = 'none';
+          document.getElementById("crud-buttons").style.display = 'none';  
+        
+        },
+        addReview: function() {
+          document.getElementById("crud-create-review").style.display = 'block';
+        }
+      });
+    })();
+  </script>
+
+</dom-module>

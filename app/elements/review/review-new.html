@@ -1,0 +1,86 @@
+<dom-module id="review-new">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+      #formContainer {
+        padding: 10px;
+      }
+      paper-button {
+        background: #3F51B5;
+        color: #ffffff;
+        margin-top: 10px;
+      }
+
+      paper-material {
+        margin-top: 10px;
+      }
+    </style>
+    
+    <paper-material elevation="1">
+      <div id="formContainer">
+        <h1>Add a new review: </h1>
+        <form is="iron-form" id="form">
+          <paper-input value="{{textReview}}" placeholder="Text review"></paper-input>
+          <paper-dropdown-menu label="Your mark" value="{{markReview}}">
+            <paper-menu class="dropdown-content">
+              <paper-item>0</paper-item>
+              <paper-item>1</paper-item>
+              <paper-item>2</paper-item>
+              <paper-item>3</paper-item>
+              <paper-item>4</paper-item>
+              <paper-item>5</paper-item>
+              <paper-item>6</paper-item>
+              <paper-item>7</paper-item>
+              <paper-item>8</paper-item>
+              <paper-item>9</paper-item>
+              <paper-item>10</paper-item>
+            </paper-menu>
+          </paper-dropdown-menu>
+          <br/>
+
+          <paper-button elevation="1" on-click="addReview">Add</paper-button>
+          <paper-button elevation="1" on-click="close">Cancel</paper-button>
+        </form>
+      </div>
+    </paper-material>
+
+  </template>
+
+  <script>
+    (function () {
+      'use strict';
+
+      Polymer({
+        is: 'review-new',
+        properties: {
+        },
+        ready: function() {},
+        addReview : function() {
+          console.log(this.keywine);
+          var ref = new Firebase("https://polymervinos.firebaseio.com/wines/"+this.keywine+"/reviews/");
+
+          var timestamp = new Date().getTime();
+          var mark = parseInt(this.markReview);
+
+          ref.push({
+            text: this.textReview,
+            date: timestamp,
+            mark: mark
+          });
+
+          document.getElementById("crud-create-review").style.display = 'none';
+
+          this.textReview = "";
+          this.dateReview = "";
+          this.markReview = "";
+        },
+        close : function() {
+          document.getElementById("crud-create-review").style.display = 'none';
+        }
+      });
+    })();
+  </script>
+
+</dom-module>

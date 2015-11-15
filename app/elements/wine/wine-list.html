@@ -1,0 +1,82 @@
+<link rel="import" href="wine-new.html">
+
+<dom-module id="wine-list">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+      #crud-read {
+
+      }
+      a {
+        text-decoration: none;
+        font-family: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        color: #333;
+      }
+
+      iron-pages #mainContainer {
+        padding: 0;
+      }
+
+      paper-button, paper-fab {
+        background: #3F51B5;
+        color: #ffffff
+      }
+
+      #wineContainer {
+        height: 60px;
+        margin-top: 20px;
+      }
+
+      #wineElement {
+        padding: 5px;
+      }
+
+    </style>
+    
+    <div id="mainContainer">
+
+      <template is="dom-repeat" items="[[wines]]" as="wine">
+          <paper-material elevation="1" id="wineContainer">
+            <div id="wineElement">
+              <a href="/wines/{{wine.__firebaseKey__}}">
+               <p>{{wine.name}}</p>
+              </a>
+            </div>
+          </paper-material>
+        </template>
+
+    </div>
+
+    <div id="crud-create" style="display:none">
+      <wine-new></wine-new>
+    </div>
+
+    <paper-material elevation="0" style="margin-top:25px; text-align: center;">
+      <paper-fab mini icon="icons:add" class="paper-fab-1" on-tap="add" style="display: inline-block;"></paper-fab>
+    </paper-material>
+
+
+  </template>
+
+  <script>
+    (function () {
+      'use strict';
+
+      Polymer({
+        is: 'wine-list',
+        properties: {
+          wines: {
+            type: Object
+          }
+        },
+        ready: function() {},
+        add: function() {
+          document.getElementById("crud-create").style.display = 'block';
+        }
+      });
+    })();
+  </script>
+
+</dom-module>

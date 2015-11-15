@@ -1,0 +1,34 @@
+<dom-module id="review-list">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+    <ul>
+      <template is="dom-repeat" items="[[reviews]]" as="review">
+        <span class="paper-font-body1">{{review.mark}}</span>
+        <span class="paper-font-body1">{{review.text}}</span>
+      </template>
+    </ul>
+  </template>
+
+  <script>
+    (function () {
+      'use strict';
+
+      Polymer({
+        is: 'review-list',
+        properties: {
+          reviews: {
+            type: Object
+          }
+        },
+        ready: function() {
+          
+        }
+      });
+    })();
+  </script>
+
+</dom-module>

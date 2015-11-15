@@ -1,0 +1,72 @@
+<dom-module id="wine-new">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+      #formContainer {
+        padding: 10px;
+      }
+      paper-button {
+        background: #3F51B5;
+        color: #ffffff;
+        margin-top: 10px;
+      }
+
+      paper-material {
+        margin-top: 10px;
+      }
+
+    </style>
+    
+    <paper-material elevation="1">
+      <div id="formContainer">
+        <h1>Add a new wine: </h1>
+        <form is="iron-form" id="form">
+          <paper-input value="{{nameWine}}" placeholder="Name wine"></paper-input>
+          <paper-input value="{{typeWine}}" placeholder="Type wine"></paper-input>
+          <paper-input value="{{descWine}}" placeholder="Description wine"></paper-input>
+          <paper-button elevation="1" on-click="addWine">Add</paper-button>
+          <paper-button elevation="1" on-click="cancel">Cancel</paper-button>
+        </form>
+      </div>
+    </paper-material>
+
+  </template>
+
+  <script>
+    (function () {
+      'use strict';
+
+      Polymer({
+        is: 'wine-new',
+        properties: {
+          wines: {
+            type: Object
+          }
+        },
+        ready: function() {},
+        addWine : function() {
+          
+          var ref = new Firebase("https://polymervinos.firebaseio.com/wines/");
+
+          ref.push({
+            name: this.nameWine,
+            type: this.typeWine,
+            desc: this.descWine
+          });
+
+          document.getElementById("crud-create").style.display = 'none';
+
+          this.nameWine = "";
+          this.typeWine = "";
+          this.descWine = "";
+        },
+        cancel : function() {
+          document.getElementById("crud-create").style.display = 'none';
+        } 
+      });
+    })();
+  </script>
+
+</dom-module>

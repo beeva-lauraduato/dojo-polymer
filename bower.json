@@ -1,0 +1,17 @@
+{
+  "name": "polymer-starter-kit",
+  "private": true,
+  "dependencies": {
+    "polymer": "Polymer/polymer",
+    "iron-elements": "PolymerElements/iron-elements",
+    "paper-elements": "PolymerElements/paper-elements",
+    "platinum-elements": "PolymerElements/platinum-elements",
+    "neon-elements": "PolymerElements/neon-elements",
+    "page": "visionmedia/page.js",
+    "firebase-element": "GoogleWebComponents/firebase-element#~1.0.8"
+  },
+  "devDependencies": {
+    "web-component-tester": "*",
+    "test-fixture": "PolymerElements/test-fixture"
+  }
+}
