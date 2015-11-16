@@ -31,11 +31,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       app.route = 'wines';
     });
 
-    /*page('/wines/:uid', scrollToTop, function(data) {
-      app.route = 'wine-info';
-      app.params = data.params;
-    });*/
-
     page('/wines/:uid', scrollToTop, function(data) {
       app.route = 'wine-detail';
       console.log(JSON.stringify(data));
@@ -45,6 +40,18 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     page('/reviews', scrollToTop, function() {
       app.route = 'reviews';
+    });
+
+    page('/doc-wine-list', scrollToTop, function () {
+      app.route = 'doc-wine-list';
+    });
+
+    page('/doc-wine-detail', scrollToTop, function () {
+      app.route = 'doc-wine-detail';
+    });
+
+    page('/doc-wine-new', scrollToTop, function () {
+      app.route = 'doc-wine-new';
     });
 
     // add #! before urls

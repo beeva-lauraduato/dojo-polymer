@@ -118,6 +118,24 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
             <section data-route="home">
               <paper-material elevation="1">
+                <p>Selecciona un elemento para mostrar:</p>
+                <ul>
+                   <li>
+                      <a href="/doc-wine-list">
+                         <span>Doc wine-list</span>
+                      </a>
+                   </li>
+                   <li>
+                      <a href="/doc-wine-detail">
+                         <span>Doc wine-detail</span>
+                      </a>
+                   </li>
+                   <li>
+                      <a href="/doc-wine-new">
+                         <span>Doc wine-new</span>
+                      </a>
+                   </li>
+                </ul>
               </paper-material>
             </section>
 
@@ -137,6 +155,18 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 <h2 class="page-title">Reviews</h2>
                 <p>This is the reviews section</p>
               </paper-material>
+            </section>
+
+            <section data-route="doc-wine-list">
+              <iron-component-page style="margin-top:210px;" src="/elements/wine/wine-list.html"></iron-component-page>
+            </section>
+
+            <section data-route="doc-wine-detail">
+              <iron-component-page style="margin-top:210px;" src="/elements/wine/wine-detail.html"></iron-component-page>
+            </section>
+
+            <section data-route="doc-wine-new">
+              <iron-component-page style="margin-top:210px;" src="/elements/wine/wine-new.html"></iron-component-page>
             </section>
 
           </iron-pages>
